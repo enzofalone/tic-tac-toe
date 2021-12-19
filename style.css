@@ -1,0 +1,15 @@
+* {
+    margin:0;
+    box-sizing: border-box;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: 200px 200px 200px;
+}
+
+.cell {
+    width: 200px;
+    height: 200px;  
+    outline: 1px black solid;
+}
