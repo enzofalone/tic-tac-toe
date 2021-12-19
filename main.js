@@ -14,20 +14,36 @@ const gameBoard = (() => {
     const getGridPos = (col, row) => {
         return grid[col, row];
     };
+    
+    const setGridPos = (col, row, state) => {
+        grid[col,row] = state;
+    }
 
     const start = () => {
         didStart = true;
         displayController.createCells();
     };
 
-    const getTurn = () => {
-        return turn;
+    const getTurn = () => { //when the cell requests the turn, we must change the next turn 
+        let temp = turn;
+
+        if(turn === "X"){
+            turn = "O";
+        } else {
+            turn = "X";
+        }
+        return temp;
     };
+
+    const checkWin = () => {
+
+    }
 
     return {
         getGridPos,
         start,
-        getTurn
+        getTurn,
+        setTurn
     };
 })();
 
@@ -69,6 +85,7 @@ const newCell = (col, row) => {
         if(state === ""){
             let turn = gameBoard.getTurn();
             updateState(turn);
+            
         }
     }
     
