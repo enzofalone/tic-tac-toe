@@ -5,6 +5,8 @@ const gameBoard = (() => {
     let turn = "X";
     let didStart = false;
 
+    let cells = [[],[],[]];
+
     let grid = [
         ["", "", ""],
         ["", "", ""],
@@ -42,15 +44,31 @@ const gameBoard = (() => {
     const resetGame = () => {
         for (let i = 0; i < 3; i++) {
            for (let j = 0; j < 3; j++) {
-               gameBoard.setGrid
+                cells[i][j].resetState();
            } 
         }
+        turn = "X";
     }
+
+    const setCell = (col, row, e) => {
+        cells[col][row] = e;
+        console.log(cells[col][row]);
+    }
+
+    const getCell = (col, row) => {
+        return cells[col][row];
+    }
+
     return {
         getGridPos,
+        setGridPos,
+
         start,
         getTurn,
-        setGridPos,
+        
+        setCell,
+        getCell,
+
         resetGame
     }
 })();
@@ -61,6 +79,7 @@ const displayController = (() => {
             for (let j = 0; j < 3; j++) {
                 const gridPos = gameBoard.getGridPos(i, j);
                 let cell = newCell(i, j);
+                gameBoard.setCell(i, j, cell);
                 cell.init();
             }
         }
@@ -85,6 +104,7 @@ const newCell = (col, row) => {
         cellDiv.classList.add("cell");
         cellDiv.addEventListener("click", trigger);
         boardDiv.appendChild(cellDiv);
+
     }
 
     const trigger = (e) => {
@@ -92,6 +112,7 @@ const newCell = (col, row) => {
         //put a "X" or "O" icon
         if(state === ""){
             let turn = gameBoard.getTurn();
+            gameBoard.setGridPos(col,row,turn);
             updateState(turn);
         }
     }
@@ -101,11 +122,19 @@ const newCell = (col, row) => {
         cellDiv.innerText = `${state}`;
     }
 
+    const resetState = () => {
+        if(state !== "") {
+            updateState("");
+            gameBoard.setGridPos(col,row,"");
+        }
+    }
+
     const getState = () => {
         return state;
     }
 
     return {
+        resetState,
         getState,
         init,
     }
@@ -114,5 +143,10 @@ const newCell = (col, row) => {
 const newPlayer = (n, isAI) => {
     return {};
 };
+
+function restart() {
+    console.log("Game Reset");
+    gameBoard.resetGame();
+}
 
 gameBoard.start();
