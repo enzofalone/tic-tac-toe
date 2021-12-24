@@ -6,9 +6,9 @@ const gameBoard = (() => {
     let didStart = false;
 
     let grid = [
-        ["X", "O", "X"],
-        ["X", "O", "X"],
-        ["X", "O", "X"]
+        ["", "", ""],
+        ["", "", ""],
+        ["", "", ""]
     ];
 
     const getGridPos = (col, row) => {
@@ -38,13 +38,21 @@ const gameBoard = (() => {
     const checkWin = () => {
 
     }
-
+    
+    const resetGame = () => {
+        for (let i = 0; i < 3; i++) {
+           for (let j = 0; j < 3; j++) {
+               gameBoard.setGrid
+           } 
+        }
+    }
     return {
         getGridPos,
         start,
         getTurn,
-        setTurn
-    };
+        setGridPos,
+        resetGame
+    }
 })();
 
 const displayController = (() => {
@@ -85,7 +93,6 @@ const newCell = (col, row) => {
         if(state === ""){
             let turn = gameBoard.getTurn();
             updateState(turn);
-            
         }
     }
     
