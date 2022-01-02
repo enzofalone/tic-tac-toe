@@ -72,18 +72,31 @@ const gameBoard = (() => {
         }
         //if there is no winner by checking each line
         //check diagonal lines
-        if ((grid[i][0] == "X") &&
-            (grid[i][1] == "X") &&
-            (grid[i][2] == "X")) {
+        if ((grid[0][0] == "X") &&
+            (grid[1][1] == "X") &&
+            (grid[2][2] == "X")) {
             alert(`X wins`);
-            break;
         }
-        if ((grid[i][0] == "X") &&
-            (grid[i][1] == "X") &&
-            (grid[i][2] == "X")) {
+        
+        if ((grid[0][0] == "O") &&
+            (grid[1][1] == "O") &&
+            (grid[2][2] == "O")) {
+            alert(`O wins`);
+        }
+
+        if ((grid[0][2] == "X") &&
+            (grid[1][1] == "X") &&
+            (grid[2][0] == "X")) {
             alert(`X wins`);
-            break;
         }
+
+        if ((grid[0][2] == "O") &&
+            (grid[1][1] == "O") &&
+            (grid[2][0] == "O")) {
+            alert(`O wins`);
+
+        }
+
     }
 
     const resetGame = () => {
