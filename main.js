@@ -42,6 +42,22 @@ const gameBoard = (() => {
     };
 
     const checkWin = () => {
+        //Check if tie
+        let emptyCells = false;
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                if ((grid[i][j] != "X") &&
+                    (grid[i][j] != "O")) {
+                    emptyCells = true;
+                    break;
+                }
+            }
+        }
+        if (!emptyCells) {
+            console.log(grid);
+            alert("Tie");
+        }
+
         //check lines with a for loop
         for (let i = 0; i < 3; i++) {
             if ((grid[i][0] == "X") &&
@@ -77,7 +93,7 @@ const gameBoard = (() => {
             (grid[2][2] == "X")) {
             alert(`X wins`);
         }
-        
+
         if ((grid[0][0] == "O") &&
             (grid[1][1] == "O") &&
             (grid[2][2] == "O")) {
@@ -96,6 +112,7 @@ const gameBoard = (() => {
             alert(`O wins`);
 
         }
+
 
     }
 
@@ -174,7 +191,7 @@ const newCell = (col, row) => {
             gameBoard.setGridPos(col, row, turn);
             updateState(turn);
 
-            //check if someone won
+            //check if someone won every time the user clicks a cell
             gameBoard.checkWin();
         }
     }
