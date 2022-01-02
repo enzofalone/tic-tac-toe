@@ -5,7 +5,11 @@ const gameBoard = (() => {
     let turn = "X";
     let didStart = false;
 
-    let cells = [[],[],[]];
+    let cells = [
+        [],
+        [],
+        []
+    ];
 
     let grid = [
         ["", "", ""],
@@ -14,11 +18,11 @@ const gameBoard = (() => {
     ];
 
     const getGridPos = (col, row) => {
-        return grid[col, row];
+        return grid[col][row];
     };
-    
+
     const setGridPos = (col, row, state) => {
-        grid[col,row] = state;
+        grid[col][row] = state;
     }
 
     const start = () => {
@@ -29,7 +33,7 @@ const gameBoard = (() => {
     const getTurn = () => { //when the cell requests the turn, we must change the next turn 
         let temp = turn;
 
-        if(turn === "X"){
+        if (turn === "X") {
             turn = "O";
         } else {
             turn = "X";
@@ -38,14 +42,55 @@ const gameBoard = (() => {
     };
 
     const checkWin = () => {
+        //check lines with a for loop
+        for (let i = 0; i < 3; i++) {
+            if ((grid[i][0] == "X") &&
+                (grid[i][1] == "X") &&
+                (grid[i][2] == "X")) {
+                alert(`X wins`);
+                break;
+            }
+            if ((grid[0][i] == "X") &&
+                (grid[1][i] == "X") &&
+                (grid[2][i] == "X")) {
+                alert(`X wins`);
+                break;
+            }
 
+            if ((grid[i][0] == "O") &&
+                (grid[i][1] == "O") &&
+                (grid[i][2] == "O")) {
+                alert(`O wins`);
+                break;
+            }
+            if ((grid[0][i] == "O") &&
+                (grid[1][i] == "O") &&
+                (grid[2][i] == "O")) {
+                alert(`O wins`);
+                break;
+            }
+        }
+        //if there is no winner by checking each line
+        //check diagonal lines
+        if ((grid[i][0] == "X") &&
+            (grid[i][1] == "X") &&
+            (grid[i][2] == "X")) {
+            alert(`X wins`);
+            break;
+        }
+        if ((grid[i][0] == "X") &&
+            (grid[i][1] == "X") &&
+            (grid[i][2] == "X")) {
+            alert(`X wins`);
+            break;
+        }
     }
-    
+
     const resetGame = () => {
         for (let i = 0; i < 3; i++) {
-           for (let j = 0; j < 3; j++) {
+            for (let j = 0; j < 3; j++) {
                 cells[i][j].resetState();
-           } 
+            }
         }
         turn = "X";
     }
@@ -65,10 +110,11 @@ const gameBoard = (() => {
 
         start,
         getTurn,
-        
+
         setCell,
         getCell,
 
+        checkWin,
         resetGame
     }
 })();
@@ -95,11 +141,11 @@ const newCell = (col, row) => {
         col: col,
         row: row
     };
-    
+
     let state = ""; //empty = none, x = player 1, o = player 2
 
     const cellDiv = document.createElement("div");
- 
+
     const init = () => {
         cellDiv.classList.add("cell");
         cellDiv.addEventListener("click", trigger);
@@ -110,22 +156,25 @@ const newCell = (col, row) => {
     const trigger = (e) => {
         //check state
         //put a "X" or "O" icon
-        if(state === ""){
+        if (state === "") {
             let turn = gameBoard.getTurn();
-            gameBoard.setGridPos(col,row,turn);
+            gameBoard.setGridPos(col, row, turn);
             updateState(turn);
+
+            //check if someone won
+            gameBoard.checkWin();
         }
     }
-    
+
     const updateState = (turn) => {
         state = turn;
         cellDiv.innerText = `${state}`;
     }
 
     const resetState = () => {
-        if(state !== "") {
+        if (state !== "") {
             updateState("");
-            gameBoard.setGridPos(col,row,"");
+            gameBoard.setGridPos(col, row, "");
         }
     }
 
