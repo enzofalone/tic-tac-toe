@@ -42,13 +42,6 @@ const newCell = (col, row) => {
             let turn = gameBoard.getTurn();
             gameBoard.setGridPos(col, row, turn);
             updateState(turn);
-
-            //check if someone won every time the user clicks a cell
-            let result = gameBoard.checkWin();
-            if(result !== undefined){
-                gameBoard.displayResult(result);
-                console.log("Results given")
-            }
         }
     }
 

@@ -1,35 +1,35 @@
+// The gameboard's factory function works as the grid manager,
+// being called throughout the user's input to check if someone has won
+// by modifying the grid variable and then calling inside the checkWin function
+// which tests out all the possibilities in the grid for a player to win
+
 const gameBoard = (() => {
     let turn = "X";
     let didStart = false;
 
+    //2D variable to store the cell's elements so we can manipulate them in case the user wants to reset
     let cells = [
         [],
         [],
         []
     ];
 
+    //2D Variable to store the state of every cell
     let grid = [
         ["", "", ""],
         ["", "", ""],
         ["", "", ""]
     ];
 
-    const getGridPos = (col, row) => {
-        return grid[col][row];
-    };
-
-    const setGridPos = (col, row, state) => {
-        grid[col][row] = state;
-    }
-
     const start = () => {
         didStart = true;
         displayController.createCells();
     };
 
-    const getTurn = () => { //when the cell requests the turn, we must change the next turn 
+    const getTurn = () => {  
         let temp = turn;
 
+        //when the cell requests the turn, we must change the next turn
         if (turn === "X") {
             turn = "O";
         } else {
@@ -117,6 +117,19 @@ const gameBoard = (() => {
         turn = "X";
     }
 
+    const displayResult = (r) => {
+        //everything here has to be replaced with something prettier please future me
+        if(r == "T") {
+            alert("Tie!");
+        } else if(r == "X") {
+            alert("X Wins!");
+        } else if(r == "O") {
+            alert("O Wins!");
+        }
+    }
+
+    //getters and setters
+
     const setCell = (col, row, e) => {
         cells[col][row] = e;
         console.log(cells[col][row]);
@@ -126,14 +139,18 @@ const gameBoard = (() => {
         return cells[col][row];
     }
 
-    const displayResult = (r) => {
-        //everything here has to be replaced with something prettier please future me
-        if(r == "T") {
-            alert("Tie!");
-        } else if(r == "X") {
-            alert("X Wins!");
-        } else if(r == "O") {
-            alert("O Wins!");
+    const getGridPos = (col, row) => {
+        return grid[col][row];
+    };
+
+    const setGridPos = (col, row, state) => {
+        grid[col][row] = state;
+        
+        //check if someone won every time the user clicks a cell
+        let result = checkWin();
+        if(result !== undefined){
+            displayResult(result);
+            console.log("Results given")
         }
     }
 
@@ -147,7 +164,6 @@ const gameBoard = (() => {
         setCell,
         getCell,
 
-        checkWin,
         displayResult,
         resetGame
     }
