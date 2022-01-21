@@ -1,4 +1,7 @@
 const boardDiv = document.querySelector(".game-board");
+const headerDiv = document.querySelector(".header-wrapper");
+const turnDiv = headerDiv.querySelector(".turn");
+
 const cells = [];
 
 const displayController = (() => {

@@ -32,9 +32,13 @@ const gameBoard = (() => {
         //when the cell requests the turn, we must change the next turn
         if (turn === "X") {
             turn = "O";
+            //show the user the turn is for the second player
+            turnDiv.innerHTML = "O";
         } else {
             turn = "X";
+            turnDiv.innerHTML = "X";
         }
+        
         return temp;
     };
 
@@ -114,7 +118,9 @@ const gameBoard = (() => {
                 cells[i][j].resetState();
             }
         }
+        //Default settings for the first turn every game
         turn = "X";
+        turnDiv.innerHTML = "X";
     }
 
     const displayResult = (r) => {
