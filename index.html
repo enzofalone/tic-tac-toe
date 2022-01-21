@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,24 +8,35 @@
     <link rel="stylesheet" href="style.css">
     <title>Tic Tac Toe</title>
 </head>
+
 <body>
     <div class="header-wrapper">
         <h1>Tic Tac Toe</h1>
+
+    </div>
+
+    <div class="io-wrapper">
+        <button id="restart" onclick="restart()">Restart</button>
         <h2 class="turn">X</h2>
     </div>
-    
-    <button id="restart" onclick="restart()">Restart</button>
-    
+
     <div class="wrapper">
         <div class="game-board">
             <!--board displays here-->
         </div>
-        
+
     </div>
-    <footer>
-        Created by Enzo Falone © 2021
+    <footer id="footer">
+        <a href="http://github.com/enzofalone">
+            Created by Enzo Falone © 2021
+        
+        <i class="fab fa-github"></i>
+    </a>
     </footer>
+
+    <script src="https://kit.fontawesome.com/7f619de774.js" crossorigin="anonymous"></script>
     <script src="gameBoard.js"></script>
     <script src="main.js"></script>
 </body>
+
 </html>

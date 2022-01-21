@@ -1,6 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 * {
-    margin:0;
+    margin: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #254036;
 }
 
 .game-board {
@@ -10,6 +17,48 @@
 
 .cell {
     width: 200px;
-    height: 200px;  
+    height: 200px;
     outline: 1px black solid;
+}
+
+.header-wrapper {
+    min-width: 100vw;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+
+    color: #C5D9D2;
+}
+
+.wrapper, .io-wrapper{
+    display: flex;
+    min-width: 100vw;
+    align-items: center;
+    justify-content: center;
+}
+
+.io-wrapper {
+    display: flex;
+    gap: 15px;
+}
+
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+    text-align: center;
+}
+
+#footer a {
+    text-decoration: none;
+    
+    color: #587369;
+    transition:all 100ms;
+}
+
+#footer a:hover {
+    color: #C5D9D2;
 }
