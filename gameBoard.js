@@ -4,7 +4,7 @@
 // which tests out all the possibilities in the grid for a player to win
 
 const gameBoard = (() => {
-    let turn = "X";
+    let turn = "X"; 
     let didStart = false;
 
     //2D variable to store the cell's elements so we can manipulate them in case the user wants to reset
@@ -32,13 +32,13 @@ const gameBoard = (() => {
         //when the cell requests the turn, we must change the next turn
         if (turn === "X") {
             turn = "O";
-            //show the user the turn is for the second player
-            turnDiv.innerHTML = "O";
-        } else {
-            turn = "X";
-            turnDiv.innerHTML = "X";
-        }
         
+        } else { // else show the user the turn is for the first player
+            turn = "X";
+            // turnDiv.innerHTML = "X";
+            
+        }
+        scoreBoard.update(scoreBoard.getPlayerName(turn));
         return temp;
     };
 
@@ -93,7 +93,7 @@ const gameBoard = (() => {
                 console.log("X wins diagonal -_")
             return "X";
         }
-        console.log(`${grid[0][0]} ${grid[1][1]} ${grid[2][2]}`);
+
         if ((grid[0][0] == "O") &&
             (grid[1][1] == "O") &&
             (grid[2][2] == "O")) {
@@ -119,6 +119,8 @@ const gameBoard = (() => {
             console.log(grid);
             return "T";
         }
+        //if no possibility has been met, just return undefined
+        return undefined
     }
 
     const resetGame = () => {

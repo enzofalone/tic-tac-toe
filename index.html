@@ -6,18 +6,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="popup.css">
     <title>Tic Tac Toe</title>
 </head>
 
 <body>
+    <div id="overlay" class="active"></div>
+    <div class="modal active" id="modal">
+        <div class="modal-header">
+            <div class="title">New Game</div>
+            <button data-close-button class="modal-close">&times;</button>
+        </div>
+        <div class="modal-body">
+            <form id="form-new-game">
+                <div class="modal-body-container">
+                <h5>Player 1</h5>
+                <label for="player1">
+                    <input id="form-player1" type="text" placeholder="" name="player1" required>
+                </label>
+                <h5>Player 2</h5>
+                <label for="player2">
+                    <input id="form-player2" type="text" placeholder="" name="player2" required>
+                </label>
+            </div>
+                <div class="modal-footer">
+                    <input class="button" type="submit" id="button-submit" name="submit">
+                </div>
+            </form>
+        </div>
+        
+
+    </div> 
+    
     <div class="header-wrapper">
         <h1>Tic Tac Toe</h1>
 
     </div>
-
+    
     <div class="io-wrapper">
-        <button id="restart" onclick="restart()">Restart</button>
-        <h2 class="turn">X</h2>
+        <button id="restart" data-modal-target="#modal" onclick="restart()">Restart</button>
+        <h2 class="turn"></h2>
     </div>
 
     <div class="wrapper">
@@ -26,15 +54,21 @@
         </div>
 
     </div>
+    
+
     <footer id="footer">
         <a href="http://github.com/enzofalone">
             Created by Enzo Falone © 2021
-        
-        <i class="fab fa-github"></i>
-    </a>
+
+            <i class="fab fa-github"></i>
+        </a>
     </footer>
 
     <script src="https://kit.fontawesome.com/7f619de774.js" crossorigin="anonymous"></script>
+    <script src="popup.js"></script>
+    <script src="scoreBoard.js"></script>
+    <script src="displayController.js"></script>
+    <script src="cell.js"></script>
     <script src="gameBoard.js"></script>
     <script src="main.js"></script>
 </body>
