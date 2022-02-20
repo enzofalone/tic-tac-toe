@@ -38,7 +38,7 @@ function getNewGameForm(e) {
 
     let formData = new FormData(form[0]);
 
-    //clear all data inputted as we already used it 
+    //clear all data inputted as we already used it for the next reset
     form[0].reset();
 
     //send players' names to the scoreBoard object

@@ -22,8 +22,13 @@ const gameBoard = (() => {
     ];
 
     const start = () => {
-        didStart = true;
+        if(!didStart){ //prevent from creating more cells
+            didStart = true;
+        } else {
+            resetGame();
+        }
         displayController.createCells();
+        scoreBoard.update(scoreBoard.getPlayerName(turn));
     };
 
     const getTurn = () => {  
