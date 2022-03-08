@@ -55,11 +55,8 @@ body {
     gap: 15px;
     margin: 32px 0 32px 0;
 }
-
-.io-wrapper button {
-    border: #3c7a64;
-    border-radius: 5px;
-    font-size: 16px;
+.io-wrapper button:hover{ 
+    background-color: wheat;
 }
 
 #footer {
@@ -81,10 +78,15 @@ body {
     color: #C5D9D2;
 }
 
-button {
-    box-shadow:0 0 10px rgba(0,0,0,0.4);
+.button {
+    /* box-shadow:0 0 10px rgba(0,0,0,0.4); */
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
-button:hover {
+.button:hover {
     cursor: pointer;
+    background-color: gray;
 }
