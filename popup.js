@@ -23,16 +23,17 @@ function openModal(modal) {
 }
 
 function closeModal(modal) {
-    if(modal== null) return;
+    if(modal == null) return;
     modal.classList.remove("active");
     overlay.classList.remove("active");
 }
 
 //NEW GAME POPUP FORM
-const modal = document.querySelector('#modal');
+const modal = document.querySelector('#modal-new-game');
 const form  = modal.querySelectorAll('#form-new-game');
 const submitInput = form[0].querySelector('input[type="submit"]');
 
+//this function retrieves all the data in the new game form
 function getNewGameForm(e) {
     e.preventDefault();
 
@@ -48,6 +49,22 @@ function getNewGameForm(e) {
     gameBoard.start();
     
     closeModal(modal);
+}
+
+//END GAME POPUP RESULT
+const modalResult = document.querySelector('#modal-result');
+
+//after the winner is decided, this function is called in the gameBoard module
+function popupResult(playerN) {
+    const body = modalResult.querySelector('#modal-result-body');
+    const h1 = body.querySelector('h1');
+    console.log(h1);
+    if((playerN == "X") || (playerN == "O")){
+        h1.innerText = `${scoreBoard.getPlayerName(playerN)} won!`;
+    } else {
+        h1.innerText = 'Tie!';
+    }
+    openModal(modalResult);
 }
 
 //after loading all the webpage, add an event listener to the new game form

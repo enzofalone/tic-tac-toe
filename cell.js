@@ -1,5 +1,3 @@
-const cells = [];
-
 const newCell = (col, row) => {
     const pos = {
         col: col,
@@ -20,10 +18,14 @@ const newCell = (col, row) => {
     const trigger = (e) => {
         //check state
         //put a "X" or "O" icon
-        if (state === "") {
-            let turn = gameBoard.getTurn();
-            gameBoard.setGridPos(col, row, turn);
-            updateState(turn);
+        if (gameBoard.isGameStart() == true) {
+            if (state === "") {
+                let turn = gameBoard.getTurn();
+                gameBoard.setGridPos(col, row, turn);
+                updateState(turn);
+            }
+        } else {
+            openModal(modal);
         }
     }
 

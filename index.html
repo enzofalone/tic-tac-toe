@@ -12,7 +12,7 @@
 
 <body>
     <div id="overlay" class="active"></div>
-    <div class="modal active" id="modal">
+    <div class="modal active" id="modal-new-game">
         <div class="modal-header">
             <div class="title">New Game</div>
             <button data-close-button class="modal-close">&times;</button>
@@ -20,21 +20,21 @@
         <div class="modal-body">
             <form id="form-new-game">
                 <div class="modal-body-container">
-                <h5>Player 1</h5>
-                <label for="player1">
-                    <input id="form-player1" type="text" placeholder="" name="player1" required>
-                </label>
-                <h5>Player 2</h5>
-                <label for="player2">
-                    <input id="form-player2" type="text" placeholder="" name="player2" required>
-                </label>
-            </div>
+                    <h5>Player 1</h5>
+                    <label for="player1">
+                        <input id="form-player1" type="text" placeholder="" name="player1" required>
+                    </label>
+                    <h5>Player 2</h5>
+                    <label for="player2">
+                        <input id="form-player2" type="text" placeholder="" name="player2" required>
+                    </label>
+                </div>
                 <div class="modal-footer">
                     <input class="button" type="submit" id="button-submit" name="submit">
                 </div>
             </form>
         </div>
-    </div> 
+    </div>
 
     <div class="modal" id="modal-result">
         <div class="modal-header">
@@ -42,16 +42,20 @@
             <button data-close-button class="modal-close">&times;</button>
         </div>
 
-        <div class="modal-body">
+        <div class="modal-body" id="modal-result-body">
+            <h1 id="result">Player</h1>
+        </div>
 
+        <div class="modal-footer">
+            <button data-close-button onclick="restart()" id="button-modal">Continue</button>
         </div>
     </div>
-    
+
     <div class="header-wrapper">
         <h1>Tic Tac Toe</h1>
 
     </div>
-    
+
     <div class="io-wrapper">
         <button id="restart" data-modal-target="#modal" onclick="restart()">Restart</button>
         <h2 class="turn"></h2>
@@ -63,7 +67,7 @@
         </div>
 
     </div>
-    
+
 
     <footer id="footer">
         <a href="http://github.com/enzofalone">

@@ -3,10 +3,15 @@ const headerDiv = document.querySelector(".header-wrapper");
 
 
 // const newPlayer = (n, isAI) => {
-//     return {};                       uncommented when AI is implemented
+//     return {};                       uncomment when AI is implemented
 // };
 
+function newGame() {
+
+}
+
 function restart() {
-    console.log("Game Reset");
     gameBoard.resetGame();
+    openModal(document.querySelector('#modal-new-game'))
+    console.log("game restart")
 }

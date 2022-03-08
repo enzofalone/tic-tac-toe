@@ -4,7 +4,7 @@
 // which tests out all the possibilities in the grid for a player to win
 
 const gameBoard = (() => {
-    let turn = "X"; 
+    let turn = "X";
     let didStart = false;
 
     //2D variable to store the cell's elements so we can manipulate them in case the user wants to reset
@@ -22,26 +22,27 @@ const gameBoard = (() => {
     ];
 
     const start = () => {
-        if(!didStart){ //prevent from creating more cells
+        if (!didStart) { //prevent from creating more cells
             didStart = true;
+            displayController.createCells();
+            scoreBoard.update(scoreBoard.getPlayerName(turn));
         } else {
             resetGame();
         }
-        displayController.createCells();
-        scoreBoard.update(scoreBoard.getPlayerName(turn));
+
     };
 
-    const getTurn = () => {  
+    const getTurn = () => {
         let temp = turn;
 
         //when the cell requests the turn, we must change the next turn
         if (turn === "X") {
             turn = "O";
-        
+
         } else { // else show the user the turn is for the first player
             turn = "X";
             // turnDiv.innerHTML = "X";
-            
+
         }
         scoreBoard.update(scoreBoard.getPlayerName(turn));
         return temp;
@@ -59,34 +60,33 @@ const gameBoard = (() => {
                 }
             }
         }
-        
 
         //check lines with a for loop
         for (let i = 0; i < 3; i++) {
             if ((grid[i][0] == "X") &&
                 (grid[i][1] == "X") &&
                 (grid[i][2] == "X")) {
-                    console.log("X wins")
+                console.log("X wins")
                 return "X";
             }
             if ((grid[0][i] == "X") &&
                 (grid[1][i] == "X") &&
                 (grid[2][i] == "X")) {
-                    console.log("X wins")
+                console.log("X wins")
                 return "X";
-                
+
             }
 
             if ((grid[i][0] == "O") &&
                 (grid[i][1] == "O") &&
                 (grid[i][2] == "O")) {
-                    console.log("O wins")
+                console.log("O wins")
                 return "O";
             }
             if ((grid[0][i] == "O") &&
                 (grid[1][i] == "O") &&
                 (grid[2][i] == "O")) {
-                    console.log("O wins")
+                console.log("O wins")
                 return "O";
             }
         }
@@ -95,28 +95,28 @@ const gameBoard = (() => {
         if ((grid[0][0] == "X") &&
             (grid[1][1] == "X") &&
             (grid[2][2] == "X")) {
-                console.log("X wins diagonal -_")
+            console.log("X wins diagonal -_")
             return "X";
         }
 
         if ((grid[0][0] == "O") &&
             (grid[1][1] == "O") &&
             (grid[2][2] == "O")) {
-                console.log("O wins")
+            console.log("O wins")
             return "O";
         }
 
         if ((grid[0][2] == "X") &&
             (grid[1][1] == "X") &&
             (grid[2][0] == "X")) {
-                console.log("X wins diagonal _-")
+            console.log("X wins diagonal _-")
             return "X";
         }
 
         if ((grid[0][2] == "O") &&
             (grid[1][1] == "O") &&
             (grid[2][0] == "O")) {
-                console.log("O wins")
+            console.log("O wins")
             return "O";
         }
 
@@ -124,7 +124,7 @@ const gameBoard = (() => {
             console.log(grid);
             return "T";
         }
-        //if no possibility has been met, just return undefined
+        //if no possibility has been met, return undefined
         return undefined
     }
 
@@ -136,19 +136,22 @@ const gameBoard = (() => {
         }
         //Default settings for the first turn every game
         turn = "X";
-        turnDiv.innerHTML = "X";
+        turnDiv.innerHTML = scoreBoard.getPlayerName(turn);
     }
 
-    const displayResult = (r) => {
-        //everything here has to be replaced with something prettier please future me
-        if(r === "T") {
-            alert("Tie!");
-        } else if(r === "X") {
-            alert("X Wins!");
-        } else if(r === "O") {
-            alert("O Wins!");
-        }
-    }
+    // const getState = (r) => {
+    //     //everything here has to be replaced with something prettier please future me
+    //     if(r === "T") {
+    //         console.log('tie')
+    //         popupResult(r)
+    //     } else if(r === "X") {
+    //         console.log('player 1 won')
+    //         return "X"
+    //     } else if(r === "O") {
+    //         console.log('player 2 won')
+    //         return "O"
+    //     }
+    // }
 
     //getters and setters
 
@@ -167,13 +170,17 @@ const gameBoard = (() => {
 
     const setGridPos = (col, row, state) => {
         grid[col][row] = state;
-        
+
         //check if someone won every time the user clicks a cell
         let result = checkWin();
-        if(result !== undefined){
-            displayResult(result);
-            console.log("Results given")
+        if (result !== undefined) {
+            popupResult(result);
+            console.log("Results given");
         }
+    }
+
+    const isGameStart = () => {
+        return didStart;
     }
 
     return {
@@ -186,7 +193,7 @@ const gameBoard = (() => {
         setCell,
         getCell,
 
-        displayResult,
+        isGameStart,
         resetGame
     }
 })();

@@ -1,8 +1,11 @@
 const turnDiv = document.querySelector(".turn");
 
 const scoreBoard = (() => {
-    
-    let players = {"X": "a", "O": "e"};
+
+    let players = {
+        "X": "a",
+        "O": "e"
+    };
 
     const update = (turn) => {
         turnDiv.innerText = turn;
