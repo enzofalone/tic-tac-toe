@@ -6,6 +6,8 @@
 const gameBoard = (() => {
     let turn = "X";
     let didStart = false;
+    let gameOver = false;
+    let result;
 
     //2D variable to store the cell's elements so we can manipulate them in case the user wants to reset
     let cells = [
@@ -135,7 +137,9 @@ const gameBoard = (() => {
             }
         }
         //Default settings for the first turn every game
+        result = '';
         turn = "X";
+        gameOver = false;
         turnDiv.innerHTML = scoreBoard.getPlayerName(turn);
     }
 
@@ -172,15 +176,20 @@ const gameBoard = (() => {
         grid[col][row] = state;
 
         //check if someone won every time the user clicks a cell
-        let result = checkWin();
+        result = checkWin();
         if (result !== undefined) {
             popupResult(result);
+            gameOver = true; // this prevents the user to keep playing after results
             console.log("Results given");
         }
     }
 
-    const isGameStart = () => {
-        return didStart;
+    const getGameOver = () => {
+        return gameOver;
+    }
+
+    const getResult = () => {
+        return result;
     }
 
     return {
@@ -193,7 +202,9 @@ const gameBoard = (() => {
         setCell,
         getCell,
 
-        isGameStart,
+        getGameOver,
+        getResult,
+
         resetGame
     }
 })();

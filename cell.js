@@ -18,14 +18,16 @@ const newCell = (col, row) => {
     const trigger = (e) => {
         //check state
         //put a "X" or "O" icon
-        if (gameBoard.isGameStart() == true) {
+        
+        if (gameBoard.getGameOver() === false) {
             if (state === "") {
                 let turn = gameBoard.getTurn();
                 gameBoard.setGridPos(col, row, turn);
                 updateState(turn);
             }
         } else {
-            openModal(modal);
+            console.log("user is trying to keep playing")
+            popupResult(gameBoard.getResult());
         }
     }
 
