@@ -8,7 +8,7 @@ const scoreBoard = (() => {
     };
 
     const update = (turn) => {
-        turnDiv.innerText = turn;
+        turnDiv.innerText =  turn;
     }
 
     const setPlayerName = (playerN, name) => {

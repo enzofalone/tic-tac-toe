@@ -27,7 +27,7 @@ const gameBoard = (() => {
         if (!didStart) { //prevent from creating more cells
             didStart = true;
             displayController.createCells();
-            scoreBoard.update(scoreBoard.getPlayerName(turn));
+            scoreBoard.update(`${scoreBoard.getPlayerName(turn)} : ${turn}`);
         } else {
             resetGame();
         }
@@ -46,7 +46,7 @@ const gameBoard = (() => {
             // turnDiv.innerHTML = "X";
 
         }
-        scoreBoard.update(scoreBoard.getPlayerName(turn));
+        scoreBoard.update(`${scoreBoard.getPlayerName(turn)} : ${turn}`);
         return temp;
     };
 
@@ -140,22 +140,8 @@ const gameBoard = (() => {
         result = '';
         turn = "X";
         gameOver = false;
-        turnDiv.innerHTML = scoreBoard.getPlayerName(turn);
+        scoreBoard.update(`${scoreBoard.getPlayerName(turn)} : ${turn}`);
     }
-
-    // const getState = (r) => {
-    //     //everything here has to be replaced with something prettier please future me
-    //     if(r === "T") {
-    //         console.log('tie')
-    //         popupResult(r)
-    //     } else if(r === "X") {
-    //         console.log('player 1 won')
-    //         return "X"
-    //     } else if(r === "O") {
-    //         console.log('player 2 won')
-    //         return "O"
-    //     }
-    // }
 
     //getters and setters
 
